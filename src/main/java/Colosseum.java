@@ -103,8 +103,52 @@ public class Colosseum {
      *         <p>
      */
     public static Pokemon buildPokemon() {
-        Pokemon returnPokemon = null;
-        return returnPokemon;
+        Pokemon resultPokemon = new Pokemon();
+        System.out.println("Select from the following Pokemon types: ");
+        System.out.println("1 - Electric Pokemon");
+        System.out.println("2 - Fire Pokemon");
+        System.out.println("3 - Water Pokemon");
+        int typeNum = myScan.nextInt();
+        final int highestType = 3;
+        while (typeNum < 1 || typeNum > highestType) {
+            System.out.println("Sorry, you must pick either 1, 2, or 3.");
+            typeNum = myScan.nextInt();
+        }
+        if (typeNum == 1) {
+            resultPokemon = new ElectricPokemon();
+        } else if (typeNum == 2) {
+            resultPokemon = new FirePokemon();
+        } else {
+            resultPokemon = new WaterPokemon();
+        }
+        System.out.println("Please name your Pokemon: ");
+        String name = myScan.next();
+        resultPokemon.setName(name);
+        final int highestLevel = 50;
+        System.out.println("How many hit points will it have? (1 - 50): ");
+        int hp = myScan.nextInt();
+        while (hp < 1 || hp > highestLevel) {
+            System.out.println("Sorry. Hit points must be between 1 and 50: ");
+            hp = myScan.nextInt();
+        }
+        resultPokemon.setHitPoints(hp);
+        System.out.println("Split fifty points between attack level and defense level");
+        System.out.println("Enter your attack level (1 - 49): ");
+        int al = myScan.nextInt();
+        while (al < 1 || al > highestLevel) {
+            System.out.println("Sorry. The attack level must be between 1 and 49: ");
+            al = myScan.nextInt();
+        }
+        resultPokemon.setAttackLevel(al);
+        System.out.println("Enter your defense level (1 - " + (highestLevel - al) + "): ");
+        int dl = myScan.nextInt();
+        while (dl < 1 || dl > highestLevel - al) {
+            System.out.println("Sorry. The defense level must be between 1 and "
+                    + (highestLevel - al) + ": ");
+            dl = myScan.nextInt();
+        }
+        resultPokemon.setDefenseLevel(dl);
+        return resultPokemon;
     }
 
     /**
