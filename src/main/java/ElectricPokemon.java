@@ -62,7 +62,7 @@ public class ElectricPokemon extends Pokemon {
         super.attack(opponent);
         double random = Math.random();
         if (opponent.getHitPoints() >= 1
-                && opponent.pokeType != PokemonType.ELECTRIC
+                && opponent.pokeType != this.pokeType
                 && random < specialtyProbability) {
             System.out.println(this.getName()
                     + " executes a specialty attack... " + specialtyAttack + "!!!");
